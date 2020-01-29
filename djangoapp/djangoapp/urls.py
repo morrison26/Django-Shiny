@@ -16,7 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from . import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shiny/', views.shiny, name=shiny),
+    path('shiny/', views.shiny, name='shiny'),
+    path('shiny_contents/', views.shiny_contents, name='shiny_contents')
 ]
