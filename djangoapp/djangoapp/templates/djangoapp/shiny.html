@@ -1,0 +1,25 @@
+<h1>We are in the wrapping page</h1>
+
+<div id="contents"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $.getJSON('{% url "shiny_contents" %}', function(data) {
+
+      var iframe = document.createElement("iframe");
+      $('#contents').append(iframe);
+
+      iframe.contentWindow.document.open();
+      iframe.contentWindow.document.write(data.html_contents);
+      iframe.contentWindow.document.close();
+
+      // Attempt circumvention
+      if (iframe.contentWindow.WebSocket)
+        WebSocket = iframe.contentWindow.WebSocket
+
+    });
+  });
+
+  </script>
